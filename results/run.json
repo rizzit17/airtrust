@@ -1,0 +1,126 @@
+{
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "rounds": 20,
+  "local_steps": 12,
+  "python": "3.13.7",
+  "torch": "2.13.0+cpu",
+  "numpy": "2.4.3",
+  "pandas": "2.3.3",
+  "kriging_range_km": 40.0,
+  "krum_assumed_f": 1,
+  "krum_warning": "Krum theoretical condition does not cover 3/8 or 5/8 corrupted scenarios; empirical comparator only",
+  "significance": [
+    {
+      "split": "test",
+      "paired_seeds": 3,
+      "wilcoxon_p": 0.5,
+      "note": "Low statistical power with three seeds; windows are not independent replicates"
+    },
+    {
+      "split": "spatial",
+      "paired_seeds": 3,
+      "wilcoxon_p": 0.5,
+      "note": "Low statistical power with three seeds; windows are not independent replicates"
+    }
+  ],
+  "beijing": {
+    "role": "Independent temporal persistence sanity benchmark only; no federated cross-city transfer evaluated",
+    "rows": 420768,
+    "stations": 12,
+    "first": "2013-03-01 00:00:00",
+    "last": "2017-02-28 23:00:00",
+    "train_end": "2015-12-18 16:00:00",
+    "test_start": "2016-07-24 20:00:00",
+    "station_metrics": [
+      {
+        "station": "Aotizhongxin",
+        "mae": 11.070392573970219,
+        "rmse": 20.946317365535208,
+        "r2": 0.9497425802889276,
+        "n": 5171
+      },
+      {
+        "station": "Changping",
+        "mae": 10.528461538461539,
+        "rmse": 20.099091062494878,
+        "r2": 0.9381666182869155,
+        "n": 5200
+      },
+      {
+        "station": "Dingling",
+        "mae": 8.881874131427438,
+        "rmse": 18.11788323925487,
+        "r2": 0.9388237249390936,
+        "n": 5037
+      },
+      {
+        "station": "Dongsi",
+        "mae": 11.854326828306721,
+        "rmse": 23.797046630751183,
+        "r2": 0.9461568632717307,
+        "n": 5073
+      },
+      {
+        "station": "Guanyuan",
+        "mae": 11.58688906128782,
+        "rmse": 22.170691589454165,
+        "r2": 0.9444844697260906,
+        "n": 5156
+      },
+      {
+        "station": "Gucheng",
+        "mae": 11.105916585838992,
+        "rmse": 22.859928557557744,
+        "r2": 0.9483256622524447,
+        "n": 5155
+      },
+      {
+        "station": "Huairou",
+        "mae": 8.841677943166442,
+        "rmse": 19.50801210389957,
+        "r2": 0.9351561558110637,
+        "n": 5173
+      },
+      {
+        "station": "Nongzhanguan",
+        "mae": 11.270458502611724,
+        "rmse": 21.79293238005852,
+        "r2": 0.9512502737368179,
+        "n": 5169
+      },
+      {
+        "station": "Shunyi",
+        "mae": 11.247943595769684,
+        "rmse": 21.991763939243718,
+        "r2": 0.9429854633945528,
+        "n": 5106
+      },
+      {
+        "station": "Tiantan",
+        "mae": 11.16036279428792,
+        "rmse": 20.671340610984704,
+        "r2": 0.9518211332796755,
+        "n": 5182
+      },
+      {
+        "station": "Wanliu",
+        "mae": 10.220831728917982,
+        "rmse": 20.385054398226092,
+        "r2": 0.9498305033776522,
+        "n": 5194
+      },
+      {
+        "station": "Wanshouxigong",
+        "mae": 11.890392422192152,
+        "rmse": 25.544649016367753,
+        "r2": 0.9386939507185867,
+        "n": 5173
+      }
+    ],
+    "missing_fraction": 0.020769164955509924
+  }
+}

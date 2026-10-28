@@ -1,0 +1,559 @@
+{
+  "downloaded_utc": "2026-10-28T18:12:04.793191+00:00",
+  "sources": [
+    {
+      "name": "India Air Quality Database, XKDR Forum",
+      "provider": "CPCB CAAQM",
+      "url": "https://airquality.xkdr.org",
+      "documentation": "https://github.com/xKDR/Air-Quality-Database",
+      "license": "CC BY 4.0",
+      "role": "Delhi reference observations and station coordinates; basis for simulated low-cost clients",
+      "period": "2024-01-01 through 2024-12-31; IST"
+    },
+    {
+      "name": "Beijing Multi-Site Air Quality",
+      "provider": "Song Chen; UCI Machine Learning Repository",
+      "url": "https://archive.ics.uci.edu/dataset/501/beijing+multi+site+air+quality+data",
+      "doi": "10.24432/C5RK5G",
+      "license": "CC BY 4.0",
+      "role": "Independent second-city benchmark; reference monitors, not low-cost sensors",
+      "period": "2013-03-01 through 2017-02-28; local time"
+    }
+  ],
+  "files": [
+    {
+      "path": "datasets/raw/beijing_multi_site_uci.zip",
+      "bytes": 8192212,
+      "sha256": "b04da438b2f331ac0ffd45aebdfec0d20d2367feb5f6948c4b1f7ce1191e33c4"
+    },
+    {
+      "path": "datasets/raw/beijing_station_data.zip",
+      "bytes": 7959991,
+      "sha256": "d1b9261c54132f04c374f762f1e5e512af19f95c95fd6bfa1e8ac7e927e3b0b8"
+    },
+    {
+      "path": "datasets/raw/delhi_pm25_hourly_2024.csv",
+      "bytes": 20268711,
+      "sha256": "31151420b2c5c694b0a7a2d56266f041aa297e7bc4815fb21de221175fb64f01"
+    },
+    {
+      "path": "datasets/raw/delhi_stations.json",
+      "bytes": 14193,
+      "sha256": "46d83e324c629b72779b89453dae79ecd0089f0d1aac1eaad165a53477a212b2"
+    },
+    {
+      "path": "datasets/raw/xkdr_source_readme.md",
+      "bytes": 4030,
+      "sha256": "08b4c64f127905e636182d9d3e0515475918692b62888f32fd26681e127dfb2f"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-01-01.csv",
+      "bytes": 399378,
+      "sha256": "11aab088eea889bd98843b8707663748b298b4eae2783af854cb4faf049d6d0a"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-01-08.csv",
+      "bytes": 398074,
+      "sha256": "4a612c9f1c756e00c9b64117294102b820137668cb3afb4b63186d693410ec50"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-01-15.csv",
+      "bytes": 399662,
+      "sha256": "3b93732be3ce4e891ad25e88d042d91837255e4d3f1f41805620be129f91d61a"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-01-22.csv",
+      "bytes": 403986,
+      "sha256": "bfec8147eb163b64f71a88038d83fece6f7dbea8ca4ab080b4727098498b1522"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-01-29.csv",
+      "bytes": 371639,
+      "sha256": "c5460ab17397904bc0c356ca474e31af00bb676a09843c75573784c381705742"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-02-05.csv",
+      "bytes": 377431,
+      "sha256": "6522ed3a671b62ebfcdf0b771bf4fb813a621013ec8550da2e4dc57b3731065c"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-02-12.csv",
+      "bytes": 389879,
+      "sha256": "61d2adb50311bb0a41bd0c854fb7d3214d78d6c5bbb574f77e768965fdd23505"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-02-19.csv",
+      "bytes": 382826,
+      "sha256": "9f97f62bff13cf7265f804810149c3f3ae33841ddacf1367fc20262e09ba42d0"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-02-26.csv",
+      "bytes": 373149,
+      "sha256": "5a949873889c5e3ec5c83a0b4f5c9ac5a1a878544e1353e601d44611f8fc746a"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-03-04.csv",
+      "bytes": 382503,
+      "sha256": "1fac5516dcfca72decf02ae9d3ea406905e431172701257ed35cb8712d515a68"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-03-11.csv",
+      "bytes": 382867,
+      "sha256": "84df769187739d07f25657bd95a3787f7999dd8a8ea288e7b6243b42edb4545e"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-03-18.csv",
+      "bytes": 391316,
+      "sha256": "059c1d22e5bf96f2b7e8dc86e02bbe50eacdc5a3ece3f59b5b976295c125ef41"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-03-25.csv",
+      "bytes": 389634,
+      "sha256": "667f5db5bba6bbc869250cdf1788868df8391e3cf356947c7c79efd7812d73e5"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-04-01.csv",
+      "bytes": 387047,
+      "sha256": "39a938669441c3a4f9523956a4078815a80633525e500f10cef877dfbc540321"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-04-08.csv",
+      "bytes": 384944,
+      "sha256": "cea9fb30fc1ff6ba53c688cfb0e2305276b986e3a055328279933f9f76d10bd7"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-04-15.csv",
+      "bytes": 382758,
+      "sha256": "6b896ef6d8a28c2a5b9881abab888010e795ca5bdf62b55db4035fe39814c59c"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-04-22.csv",
+      "bytes": 377819,
+      "sha256": "97a159a4faf4db6824566027135bafe93485354fae7611c750f0c81d906f7bac"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-04-29.csv",
+      "bytes": 388412,
+      "sha256": "c1fe2ab47543f3721672f6c27b5a8fcba4572b896bf88863458b9f174c0950c0"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-05-06.csv",
+      "bytes": 380133,
+      "sha256": "5bf1b55b85a5747fb636f6635fa063be4d7de62b84fe848cd33269b4a3a32de1"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-05-13.csv",
+      "bytes": 396554,
+      "sha256": "ac48eb6486503a230542edcf0bd3bb0fb2c75a0abee16ba6afad3d72f5472d5f"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-05-20.csv",
+      "bytes": 391065,
+      "sha256": "d0f907a7fec554ae879b9034bbfb5928776a01baa2f2b43302a74e3ef668fbb9"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-05-27.csv",
+      "bytes": 393134,
+      "sha256": "99a992c9fc58c0cf640afdd4f7f777fcdd97f3dbb31044bf02322eb85292ca64"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-06-03.csv",
+      "bytes": 390274,
+      "sha256": "2f5348d8dc6c706f1fd1aefedbffd425cd61b2205c9ba6475e6bf7b4ce541f67"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-06-10.csv",
+      "bytes": 380103,
+      "sha256": "1c6a9922c639d26ccd3041a4a315e2ede31fbacef58a5da7d4500ade37bf145f"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-06-17.csv",
+      "bytes": 380885,
+      "sha256": "a3946e5a699f1a4e86f7eefe77b00a7f7e0695b80240f4c567016dcf7d596370"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-06-24.csv",
+      "bytes": 341103,
+      "sha256": "e2b8e5bb6a46629be414116e1794e32427b1e05ce46ea54f3b88f55de38f1511"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-07-01.csv",
+      "bytes": 364388,
+      "sha256": "67ea33b03d508638028386a5ae2a5088d5c8a72f44b31addd8664f19a03dda4c"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-07-08.csv",
+      "bytes": 373282,
+      "sha256": "db09dff77ebda3e17204a4ecdb4e8da336e2e2de0e143b65518f89e57909592a"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-07-15.csv",
+      "bytes": 369831,
+      "sha256": "688b25019f4b5390b5a66c3a61ff10c7463bb5131d2b78d073d8b14d9b4d6d13"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-07-22.csv",
+      "bytes": 372022,
+      "sha256": "12c845d7f679958bc27681ffde312b67cfa059b022848d966a1cad97d585f1cc"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-07-29.csv",
+      "bytes": 369883,
+      "sha256": "30c4087288e62c92cbdb362dd75cf41d4630e00f561cff1de399fd5d2995a088"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-08-05.csv",
+      "bytes": 366418,
+      "sha256": "49f59a5a121f49fe9ed9f758a94c146fd24f076f1415455393b02da6ec92f75b"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-08-12.csv",
+      "bytes": 370326,
+      "sha256": "e86a53a1fa0f44adf9e1126cdbc941a2aa42b6c771fa93f89f8782cc3d97060c"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-08-19.csv",
+      "bytes": 364398,
+      "sha256": "5639bd6b7e168a681b116edcbea3fddab0c0e094e3dfa44cbbed9369f5080805"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-08-26.csv",
+      "bytes": 369393,
+      "sha256": "fdfb4dfcffe879e41dbcf27154a77740295573fa0e5e62b09416a46d3e6b22a2"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-09-02.csv",
+      "bytes": 361231,
+      "sha256": "e9dc0dc643edf6c58a8c07e15f6d83372b2bfe2bc8c6f64d7d3c648b134fcb37"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-09-09.csv",
+      "bytes": 337245,
+      "sha256": "9ae24fb4d8d2262fff840dad8ba9421330ed8cb76039af0ecd8e771d56e6ec33"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-09-16.csv",
+      "bytes": 365483,
+      "sha256": "713c1a4e7d2484627a54c610bc12d2c555d4b56bdaaa56273072c0beb8cc0419"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-09-23.csv",
+      "bytes": 359755,
+      "sha256": "25555471e8fa074ad6d967dfa6ea595508061a0bcfd2672ab8e362fdb847df92"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-09-30.csv",
+      "bytes": 358972,
+      "sha256": "7c6afa666a40b3145671e51ed7ad1f5872d759f9c651209c59913f144c52bead"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-10-07.csv",
+      "bytes": 361962,
+      "sha256": "7abe559d3c99037792a0a62b6c3e1809d65babf6b60d3aafde130170d80b0e39"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-10-14.csv",
+      "bytes": 368984,
+      "sha256": "2018aedecf3e86e7cda88c7ca3f8f8e406750fc80498496fa63468bc7ad754e0"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-10-21.csv",
+      "bytes": 388338,
+      "sha256": "fec1cd1e10f1f4786dc508a6cd50d6478e7f16a89ed97a2fedb93b2aab0c41b1"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-10-28.csv",
+      "bytes": 400196,
+      "sha256": "72b3407bdfe2df32258721ba41ea5c1366576a6bceac04dfbc4a3465931e0136"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-11-04.csv",
+      "bytes": 403064,
+      "sha256": "fff9350808fd47f07c5e6ac52aaf89b9baa81506d427e029827e44e79006595f"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-11-11.csv",
+      "bytes": 395867,
+      "sha256": "261fc5090ca87ae95e82235b70fb2ece7630343eeac4c2e40a42f8e850fafa59"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-11-18.csv",
+      "bytes": 400906,
+      "sha256": "119448327e042a57694d056541e83c52794260259059e54bf8b63a4e092c1c7a"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-11-25.csv",
+      "bytes": 403686,
+      "sha256": "a962f92f92f21cae6e9f6e58ef7632f7bdf58d888a5f314feb16fd27b3b40e9c"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-12-02.csv",
+      "bytes": 400811,
+      "sha256": "c4797a661126f6f88b31edee56454a1a06a1561117eabb1280d68f1d9718dc52"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-12-09.csv",
+      "bytes": 399231,
+      "sha256": "590e9104ccdef84afce2cefe1e80f4e2da78a65531bb91d4849e2603f6132ef2"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-12-16.csv",
+      "bytes": 405651,
+      "sha256": "18b41b02f90f11b344bdd93d0b568bdcddf794e549b9a2b7134cae6acccf7668"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-12-23.csv",
+      "bytes": 393192,
+      "sha256": "82bbf7bbaaa337bf8bd42a7ff4285e2c5a68cbf66531455c4d51bb281f2e85b3"
+    },
+    {
+      "path": "datasets/raw/delhi_hourly/2024-12-30.csv",
+      "bytes": 113061,
+      "sha256": "c9a57e92388bd71310f06028d2991015b3e2ee3a60655f01b1967ad57bd978d7"
+    }
+  ],
+  "delhi_rows": 317627,
+  "processed_files": [
+    {
+      "path": "datasets/processed/delhi_reference_cleaned_2024.csv.gz",
+      "bytes": 638075,
+      "sha256": "793c15a4502db29c71a152535c9f7a9adf6fd6133e6bd34ed6cf30b9afe942c6"
+    },
+    {
+      "path": "datasets/processed/seed_17/client_01_simulated_pm25.csv.gz",
+      "bytes": 214381,
+      "sha256": "e280676ee57a18f9f3d8a7c0d09b6253ed275baf2d88386ee1b01066a67c91f7"
+    },
+    {
+      "path": "datasets/processed/seed_17/client_02_simulated_pm25.csv.gz",
+      "bytes": 214929,
+      "sha256": "dae138068a1cf9ff929e8826a7f550f2362c7f96b1a2cc8399c67d3cfd8b5e63"
+    },
+    {
+      "path": "datasets/processed/seed_17/client_03_simulated_pm25.csv.gz",
+      "bytes": 231533,
+      "sha256": "06c626c7f3e02f32b5f0420a880e6dedac55b7d2399b3fe5c9730e981f2093ad"
+    },
+    {
+      "path": "datasets/processed/seed_17/client_04_simulated_pm25.csv.gz",
+      "bytes": 220132,
+      "sha256": "0dcca40b0f2a211f34c148a7069a9942abcd19827969a04a7fe2162378f5d23a"
+    },
+    {
+      "path": "datasets/processed/seed_17/client_05_simulated_pm25.csv.gz",
+      "bytes": 190961,
+      "sha256": "71f133d76033c6c61895942e94c65274e09725ce98536c50da43e6c90e144915"
+    },
+    {
+      "path": "datasets/processed/seed_17/client_06_simulated_pm25.csv.gz",
+      "bytes": 189920,
+      "sha256": "77bce9527407b34731b4ad01161bfb70a9e624220425b838da05e485df2d4854"
+    },
+    {
+      "path": "datasets/processed/seed_17/client_07_simulated_pm25.csv.gz",
+      "bytes": 183756,
+      "sha256": "75029d1bd50fb625f54fc2a9f2d3e3e11798204d1e17bbba11bea304116e4743"
+    },
+    {
+      "path": "datasets/processed/seed_17/client_08_simulated_pm25.csv.gz",
+      "bytes": 190898,
+      "sha256": "1e8d08262284bb7ae824b1a20a272b6ad1555b1e1c1eef2d367dd210d66d5241"
+    },
+    {
+      "path": "datasets/processed/seed_17/nonmember_samples.npz",
+      "bytes": 345646,
+      "sha256": "c7e4517ddb5d48e227e8210a1fd37fe19d5865b0d3771fe86b5fe3c51203a91a"
+    },
+    {
+      "path": "datasets/processed/seed_17/simulation_and_split.json",
+      "bytes": 4643,
+      "sha256": "6799ab1825085ad9ca254d0aa0e5fcc7678eed08ebcdcdd99c20d6d0de59cf17"
+    },
+    {
+      "path": "datasets/processed/seed_17/spatial_samples.npz",
+      "bytes": 194132,
+      "sha256": "6b0fa327f667e54c0a38686ad0a2f66f18e99ddac1a5d8ddc05b2049c662b157"
+    },
+    {
+      "path": "datasets/processed/seed_17/station_assignments.csv",
+      "bytes": 2489,
+      "sha256": "553d8186bbce938d83ca525095b56d3526167cc1bb012d8efad8963093e420db"
+    },
+    {
+      "path": "datasets/processed/seed_17/test_samples.npz",
+      "bytes": 624624,
+      "sha256": "4c820add982acb48cce58b80bc0807815b6171b054ff5a407209f4a32ea36d56"
+    },
+    {
+      "path": "datasets/processed/seed_17/train_samples.npz",
+      "bytes": 2084354,
+      "sha256": "8b7f247b8b154837a1e99147a4e65cdd9791e902acccf6808530884889e09f45"
+    },
+    {
+      "path": "datasets/processed/seed_17/validation_samples.npz",
+      "bytes": 544367,
+      "sha256": "14c04d6dae35d798cbac3500223c91d077b3bdf7bb4c4d9a31fc5ed37fe40709"
+    },
+    {
+      "path": "datasets/processed/seed_29/client_01_simulated_pm25.csv.gz",
+      "bytes": 214131,
+      "sha256": "c34da56a567179e7c094d788ea0c7d84588d3f1b9e851273d6eeed7c6cd68fbc"
+    },
+    {
+      "path": "datasets/processed/seed_29/client_02_simulated_pm25.csv.gz",
+      "bytes": 223110,
+      "sha256": "366f2bca09bc525f459b01ba9d3331ecb7dd7e61bc3f6d5649ee1c8e98cb3e2d"
+    },
+    {
+      "path": "datasets/processed/seed_29/client_03_simulated_pm25.csv.gz",
+      "bytes": 231397,
+      "sha256": "c3235135a6f598638f5576d1af9a77b10e593d0730014c25be58ffa3d255af04"
+    },
+    {
+      "path": "datasets/processed/seed_29/client_04_simulated_pm25.csv.gz",
+      "bytes": 212711,
+      "sha256": "ff105321badf00dc13a91a5b5f7386ae161a27801300cf2009ed4ee17491ced9"
+    },
+    {
+      "path": "datasets/processed/seed_29/client_05_simulated_pm25.csv.gz",
+      "bytes": 190824,
+      "sha256": "fc4add631db2bc21ac5d0ce65c698a8a8dd9c4fd7607f52ef4c9c880593bf8e0"
+    },
+    {
+      "path": "datasets/processed/seed_29/client_06_simulated_pm25.csv.gz",
+      "bytes": 183617,
+      "sha256": "4ef082913a8c7f1d9f1b6b8837e69ed9d1e36f358ff18a47d634e5995a70003e"
+    },
+    {
+      "path": "datasets/processed/seed_29/client_07_simulated_pm25.csv.gz",
+      "bytes": 189825,
+      "sha256": "eab58d1633ede1a45c3db0df4a9bc786309721d0b3e0424bae4b19ebd6fbe6d8"
+    },
+    {
+      "path": "datasets/processed/seed_29/client_08_simulated_pm25.csv.gz",
+      "bytes": 191135,
+      "sha256": "e7b6d3a9f2cf327428c1f98f675d80b20d3cf17a78c245838efb6a7d178ed81e"
+    },
+    {
+      "path": "datasets/processed/seed_29/nonmember_samples.npz",
+      "bytes": 344316,
+      "sha256": "710ec3dbb2259da33da59252a3f847a77e04358204923d98376be60febc532ed"
+    },
+    {
+      "path": "datasets/processed/seed_29/simulation_and_split.json",
+      "bytes": 4644,
+      "sha256": "ce3e1186695c960ff3fb82e1281e3798bddc57a5ff28636d2f0869aae5d60bd8"
+    },
+    {
+      "path": "datasets/processed/seed_29/spatial_samples.npz",
+      "bytes": 194375,
+      "sha256": "b2906b9698aa493d1e5c923c974a82b8e925212192217d42aa8d61b2b235a55d"
+    },
+    {
+      "path": "datasets/processed/seed_29/station_assignments.csv",
+      "bytes": 2489,
+      "sha256": "553d8186bbce938d83ca525095b56d3526167cc1bb012d8efad8963093e420db"
+    },
+    {
+      "path": "datasets/processed/seed_29/test_samples.npz",
+      "bytes": 624823,
+      "sha256": "3ff43e2b45f6947c7f95b74ff836fe13af209b47cb8be8bd929f893c3cb8dc96"
+    },
+    {
+      "path": "datasets/processed/seed_29/train_samples.npz",
+      "bytes": 2084835,
+      "sha256": "f3a757bcd60b3541f0f2ab36eea72777d7ccf6358d6780d3ae2ba89ccff1cfa9"
+    },
+    {
+      "path": "datasets/processed/seed_29/validation_samples.npz",
+      "bytes": 541953,
+      "sha256": "06664bfad5e26f55c4a6c852330dcdebf5d53b6c8b318e6f9bcc278d01465e82"
+    },
+    {
+      "path": "datasets/processed/seed_43/client_01_simulated_pm25.csv.gz",
+      "bytes": 222535,
+      "sha256": "a8938a618b82ac5658716ee3d4716fa0b20b8c3d7f4644f0cb2580308e8396e2"
+    },
+    {
+      "path": "datasets/processed/seed_43/client_02_simulated_pm25.csv.gz",
+      "bytes": 222642,
+      "sha256": "6a23648d962c8a8a732d7043e23f2425652e651882dde0c370d43962a1b58f7d"
+    },
+    {
+      "path": "datasets/processed/seed_43/client_03_simulated_pm25.csv.gz",
+      "bytes": 223328,
+      "sha256": "23ceebe13c20ad7a47a4b241cde211ce9ea4aac15401ec81a9b601f412f979c2"
+    },
+    {
+      "path": "datasets/processed/seed_43/client_04_simulated_pm25.csv.gz",
+      "bytes": 220326,
+      "sha256": "37c668a7ed331c30d0eb563a07b5bc5fc5f8d99b7e43844d6ebb64e2103d9824"
+    },
+    {
+      "path": "datasets/processed/seed_43/client_05_simulated_pm25.csv.gz",
+      "bytes": 190702,
+      "sha256": "4f26a153a2d263e068cff80f557cb2f3c1595a044163fc56c8ebf16a9b37b423"
+    },
+    {
+      "path": "datasets/processed/seed_43/client_06_simulated_pm25.csv.gz",
+      "bytes": 183755,
+      "sha256": "4b0936462a006d78f406f770cc17eb96c4f8b550abebbe331ab21a6b464cd31b"
+    },
+    {
+      "path": "datasets/processed/seed_43/client_07_simulated_pm25.csv.gz",
+      "bytes": 189905,
+      "sha256": "d4ef1fa1980fbbae7e4a77d02981a46730691660ee9dd1589178c29c50ea3b1c"
+    },
+    {
+      "path": "datasets/processed/seed_43/client_08_simulated_pm25.csv.gz",
+      "bytes": 184126,
+      "sha256": "a11cfefc1220ae6cb5579cc6043fee5a66d6cecf2e30a304cae678fcfff3efcd"
+    },
+    {
+      "path": "datasets/processed/seed_43/nonmember_samples.npz",
+      "bytes": 341413,
+      "sha256": "1eec7e69a61ab1fed46a5798c0b9fb97b2046100b40b95fc2e3a8b5132441c3e"
+    },
+    {
+      "path": "datasets/processed/seed_43/simulation_and_split.json",
+      "bytes": 4644,
+      "sha256": "d02079e4959638c699f9ce0bf8730a8ea8d0e0f90a6ffbc162a7cfad18e1e80b"
+    },
+    {
+      "path": "datasets/processed/seed_43/spatial_samples.npz",
+      "bytes": 193980,
+      "sha256": "19b31eaa4cf1e1291f164fd36bff510107d083acdb7e1a15826baea5693f87da"
+    },
+    {
+      "path": "datasets/processed/seed_43/station_assignments.csv",
+      "bytes": 2489,
+      "sha256": "553d8186bbce938d83ca525095b56d3526167cc1bb012d8efad8963093e420db"
+    },
+    {
+      "path": "datasets/processed/seed_43/test_samples.npz",
+      "bytes": 625405,
+      "sha256": "14d3b5d5a5c8735f1b8da4eeb9dc74102a91db59a599cd2011a8a531e62ab7d0"
+    },
+    {
+      "path": "datasets/processed/seed_43/train_samples.npz",
+      "bytes": 2081785,
+      "sha256": "da8446f945f28c695d9e56d52884df5a29510ebc0320a4155964665918eb6da3"
+    },
+    {
+      "path": "datasets/processed/seed_43/validation_samples.npz",
+      "bytes": 543174,
+      "sha256": "08f39a162dfc2f9513ed7c91b2270eb1c99412e5173c2ef34957b0fafc781b8d"
+    }
+  ],
+  "processing": {
+    "retained_stations": 36,
+    "valid_reference_observations": 300355,
+    "seeds": [
+      17,
+      29,
+      43
+    ],
+    "units": "PM2.5 ug/m3; coordinates decimal degrees; timestamps IST",
+    "modifications": "Filtering, limited causal input filling, synthetic sensor errors, deterministic client/station splits, fixed scaling"
+  }
+}

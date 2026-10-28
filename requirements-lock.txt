@@ -1,0 +1,13 @@
+# Versions used for the measured submission run (Python 3.13).
+# torch CPU wheel; install from the official PyTorch CPU index if required.
+numpy==2.4.3
+pandas==2.3.3
+scipy==1.17.1
+scikit-learn==1.8.0
+torch==2.13.0
+fastapi==0.117.1
+uvicorn==0.37.0
+matplotlib==3.11.0
+requests==2.33.0
+pytest==9.1.1
+httpx==0.28.1
