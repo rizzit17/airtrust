@@ -73,12 +73,14 @@ def test_distinct_station_locations(data):
     dist=data['distance'].copy(); np.fill_diagonal(dist,np.inf)
     assert dist.min()>=.05
 
-def test_uci_hour_grid_preserves_missing_hours():
+@pytest.mark.parametrize('timestamp_unit', ['ns', 'us'])
+def test_uci_hour_grid_preserves_missing_hours(timestamp_unit):
     from airtrust.data import load_beijing
     p=load_beijing()
+    p.index=p.index.as_unit(timestamp_unit)
     assert p.shape==(35064,12)
     assert len(p)*len(p.columns)==420768
-    assert np.all(np.diff(p.index.asi8)==3600*10**9)
+    assert np.all(np.diff(p.index.to_numpy())==np.timedelta64(1,'h'))
 
 def test_saved_model_reproduces_exported_predictions(data):
     import pandas as pd
