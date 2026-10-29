@@ -3,6 +3,9 @@
 **Federated Learning for City-Wide Air Pollution Mapping Without Centralizing Sensor Data**
 BCSE316L · Design of Smart Cities · AY 2026–27 · Team 10 · Assigned Project 9
 
+**Live simulation:** [airtrust.vercel.app](https://airtrust.vercel.app) · [Simulation Lab](https://airtrust.vercel.app/#lab)
+— public access, with historical map inference, sensor controls, results and dataset downloads.
+
 AirTrust is a reproducible research prototype for Delhi air-quality prediction. Eight geographic clients train spatial and temporal models on local simulated sensor readings and exchange model parameters. Its dashboard shows historical pollution maps, calibration, model comparisons, robustness, privacy probes and data quality.
 
 **Real reference observations; simulated low-cost sensors; single-computer federation.** This is not a live deployment or a formal privacy guarantee.

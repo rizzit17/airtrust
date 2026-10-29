@@ -1,5 +1,10 @@
 # Hosting AirTrust on Vercel
 
+**Production:** https://airtrust.vercel.app — deployed and checked on 29 October 2026.
+Open https://airtrust.vercel.app/#lab for the Simulation Lab. No Vercel sign-in is
+required at the production URL. The unique deployment preview URL can require
+authentication; share the production URL above with reviewers.
+
 The hosted dashboard runs the same Python scenario calculations and saved spatial
 graph models as the local application. Training remains an offline research task.
 No models are retrained when a visitor changes a Simulation Lab control.
@@ -72,8 +77,12 @@ station chart, Experiments, Simulation Lab scenario controls and dataset exports
 Verify `/api/map?hour=8000&method=trust`, `/api/context/pm10`, and
 `/api/scenario?station_id=site_103` return successful JSON responses.
 
-Before authentication and an actual successful deployment, the project is only
-deployment-ready: a local package is not evidence of a working public URL.
+Production verification returned HTTP 200 for the dashboard, frontend script,
+overview, stations, graph map, scenario, contextual pollutant, extended results,
+and quality endpoints. The graph map returned 784 grid points. The default CRRI
+scenario returned RMSE 59.3733 → 18.0898 on 1,213 test pairs, matching the local
+calculation. The hosted browser scenario was also run successfully. All eleven
+download exports were checked for public accessibility and matching content.
 
 Platform references: [FastAPI on Vercel](https://vercel.com/docs/frameworks/backend/fastapi),
 [function limits](https://vercel.com/docs/functions/limitations), and
