@@ -9,6 +9,7 @@ AirTrust is a reproducible research prototype for Delhi air-quality prediction. 
 
 ## Start here for evaluation
 
+- [Review 3 presentation — 12 slides](docs/AirTrust_Review3_Presentation.pptx) — dataset roles and counts, station map, editable architecture diagrams and result charts, simulation scenarios, and presenter notes.
 - [Eight-page study and simulation guide](docs/Team10_Study_and_Demo_Guide.pdf) · [editable Word version](docs/Team10_Study_and_Demo_Guide.docx) — exact button sequence, speaking script, dataset answers and viva preparation.
 - [Requirements and teacher-feedback evidence](docs/REQUIREMENTS.md)
 - [Implementation report](docs/IMPLEMENTATION_REPORT.md) and [extended findings](docs/EXTENDED_EVALUATION.md)
