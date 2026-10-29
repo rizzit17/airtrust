@@ -1,17 +1,17 @@
 from functools import lru_cache
 import json
+import os
 from pathlib import Path
 import numpy as np
 import pandas as pd
-import torch
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from .data import ROOT, prepare
-from .models import SpatialGraph
 
 app=FastAPI(title='AirTrust Delhi',version='1.0.0')
 RESULTS=ROOT/'results'
+RUNTIME=Path(os.environ['AIRTRUST_RUNTIME_BUNDLE']) if os.environ.get('AIRTRUST_RUNTIME_BUNDLE') else None
 app.mount('/static',StaticFiles(directory=ROOT/'web'),name='static')
 
 @app.get('/')
@@ -22,7 +22,11 @@ def records(path):
     return json.loads(pd.read_csv(path).replace([np.inf,-np.inf],np.nan).to_json(orient='records'))
 
 @lru_cache(maxsize=3)
-def get_data(seed=17): return prepare(seed)
+def get_data(seed=17):
+    if RUNTIME:
+        from .inference import load_snapshot
+        return load_snapshot(RUNTIME, seed)
+    return prepare(seed)
 
 @app.get('/api/overview')
 def overview():
@@ -50,6 +54,7 @@ def quality():
 @app.get('/api/context/{parameter}')
 def context_pollutant(parameter:str):
     if parameter not in ['pm10','no2']: raise HTTPException(400,'Choose pm10 or no2')
+    if RUNTIME: return json.loads((RUNTIME/f'context_{parameter}.json').read_text())
     path=ROOT/'datasets'/'raw'/f'delhi_{parameter}_hourly_2024.csv'
     if not path.exists(): raise HTTPException(503,'Dataset download is incomplete')
     frame=pd.read_csv(path); frame['date']=pd.to_datetime(frame.period_start).dt.strftime('%Y-%m')
@@ -96,9 +101,18 @@ def pollution_map(hour:int=8000,method:str='trust',seed:int=17):
     if seed not in [17,29,43]: raise HTTPException(400,'Unsupported seed')
     d=get_data(seed); low=d['bounds'][2]
     if hour<low or hour>=len(d['times']): raise HTTPException(400,f'Hour must be between {low} and {len(d["times"])-1}')
-    path=RESULTS/'models'/f'graph_{method}_{seed}.pt'
+    path=(RUNTIME/'models'/f'graph_{method}_{seed}.npz') if RUNTIME else (RESULTS/'models'/f'graph_{method}_{seed}.pt')
     if not path.exists(): raise HTTPException(404,'Model is unavailable')
-    model=SpatialGraph(); model.load_state_dict(torch.load(path,map_location='cpu',weights_only=True)); model.eval()
+    if RUNTIME:
+        from .inference import load_graph
+        model=load_graph(str(path))
+        def predict(x, context): return float(model(x, context)[0])
+    else:
+        import torch
+        from .models import SpatialGraph
+        model=SpatialGraph(); model.load_state_dict(torch.load(path,map_location='cpu',weights_only=True)); model.eval()
+        def predict(x, context):
+            with torch.no_grad(): return float(model(torch.from_numpy(x),torch.from_numpy(context))[0])
     lat=np.linspace(d['stations'].latitude.min()-.01,d['stations'].latitude.max()+.01,28)
     lon=np.linspace(d['stations'].longitude.min()-.01,d['stations'].longitude.max()+.01,28)
     points=np.array([(a,b) for a in lat for b in lon])
@@ -119,7 +133,7 @@ def pollution_map(hour:int=8000,method:str='trust',seed:int=17):
         if len(ids)<2: values.append(None); continue
         while len(ids)<3: ids.append(ids[-1])
         x=np.concatenate((d['filled'][hour-6:hour,ids].T/100.,(d['xy'][ids]-xy[i])/50.),axis=1).astype('float32')
-        with torch.no_grad(): value=float(model(torch.from_numpy(x[None]),torch.from_numpy(context))[0])*100
+        value=predict(x[None],context)*100
         values.append(max(value,0))
     stations=d['stations'].reset_index()
     stations['observed']=d['reference'][hour]; stations['simulated']=d['noisy'][hour]
@@ -128,6 +142,11 @@ def pollution_map(hour:int=8000,method:str='trust',seed:int=17):
 
 @app.get('/api/download/{name}')
 def download(name:str):
+    if RUNTIME:
+        from fastapi.responses import RedirectResponse
+        exports=json.loads((RUNTIME/'downloads.json').read_text())
+        if name not in exports: raise HTTPException(404,'Unknown export')
+        return RedirectResponse('/downloads/'+exports[name],status_code=307)
     allowed={'metrics':'results/metrics.csv','summary':'results/summary.csv','privacy':'results/privacy.csv','communication':'results/communication.csv','robustness':'results/robustness.csv','predictions':'results/predictions.csv.gz','dataset':'datasets/raw/delhi_pm25_hourly_2024.csv','manifest':'datasets/manifest.json','report':'docs/IMPLEMENTATION_REPORT.md','datasets_zip':'submission/datasets_used.zip','project_zip':'submission/airtrust_project.zip'}
     if name not in allowed: raise HTTPException(404,'Unknown export')
     path=ROOT/allowed[name]

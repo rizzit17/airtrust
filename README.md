@@ -21,6 +21,10 @@ Saved models, results and a public-data snapshot are included. Retraining is opt
 
 ## Quick start
 
+For publishing the complete interactive dashboard, see [Vercel hosting](docs/HOSTING.md).
+The compact hosting build preserves model inference and scenario calculations;
+training and experiment reproduction stay in this repository.
+
 Tested with Python 3.13 and CPU PyTorch on Windows. No GPU or API account is required.
 
 ```bash
