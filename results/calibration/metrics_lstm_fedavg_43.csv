@@ -1,0 +1,2 @@
+seed,model,method,split,mae,rmse,r2,n
+43,lstm,fedavg,test,27.641141891479492,41.31588458856881,0.902458906173706,11403

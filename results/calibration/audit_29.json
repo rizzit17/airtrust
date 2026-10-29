@@ -1,0 +1,354 @@
+{
+  "source_rows": 317627,
+  "retained_observations": 300355,
+  "coverage_threshold": 0.7,
+  "excluded_stations": 3,
+  "colocated_catalog_entries_excluded": [
+    "site_1563"
+  ],
+  "timezone": "Asia/Kolkata",
+  "spatial_fold": null,
+  "input_calibration": true,
+  "calibration_coefficients": {
+    "site_103": {
+      "slope": 0.9794220536447141,
+      "intercept": -1.309168830562753,
+      "pairs": 872
+    },
+    "site_104": {
+      "slope": 0.9808199773638346,
+      "intercept": -1.6569535729084832,
+      "pairs": 828
+    },
+    "site_105": {
+      "slope": 0.9771613699881928,
+      "intercept": -1.065317439742612,
+      "pairs": 868
+    },
+    "site_106": {
+      "slope": 0.9811762198642509,
+      "intercept": -1.6555329087832096,
+      "pairs": 872
+    },
+    "site_107": {
+      "slope": 0.7840008367565967,
+      "intercept": -24.9530361015124,
+      "pairs": 848
+    },
+    "site_108": {
+      "slope": 0.7899280332718077,
+      "intercept": -26.709953629729604,
+      "pairs": 791
+    },
+    "site_109": {
+      "slope": 0.9796067155802947,
+      "intercept": -1.4725714474415732,
+      "pairs": 841
+    },
+    "site_113": {
+      "slope": 0.9798253777920862,
+      "intercept": -1.616701567687845,
+      "pairs": 855
+    },
+    "site_114": {
+      "slope": 0.7792619529239088,
+      "intercept": -25.601511878003357,
+      "pairs": 826
+    },
+    "site_115": {
+      "slope": 0.9805826324437984,
+      "intercept": -1.6390026694617792,
+      "pairs": 834
+    },
+    "site_117": {
+      "slope": 0.791653993457243,
+      "intercept": -27.529796455709455,
+      "pairs": 789
+    },
+    "site_118": {
+      "slope": 0.978591361807443,
+      "intercept": -1.2263886999112872,
+      "pairs": 861
+    },
+    "site_119": {
+      "slope": 0.7887022468950186,
+      "intercept": -25.25192331745215,
+      "pairs": 635
+    },
+    "site_122": {
+      "slope": 0.7879956434128872,
+      "intercept": -25.35572941177902,
+      "pairs": 741
+    },
+    "site_124": {
+      "slope": 0.9789349556292289,
+      "intercept": -1.1422184074869104,
+      "pairs": 863
+    },
+    "site_125": {
+      "slope": 0.9800717591858237,
+      "intercept": -1.4387005138740063,
+      "pairs": 873
+    },
+    "site_1420": {
+      "slope": 0.77536865313035,
+      "intercept": -23.24267576685238,
+      "pairs": 820
+    },
+    "site_1421": {
+      "slope": 0.7962043521335692,
+      "intercept": -28.213455360017953,
+      "pairs": 842
+    },
+    "site_1422": {
+      "slope": 0.9785860391964957,
+      "intercept": -1.2391984563406655,
+      "pairs": 860
+    },
+    "site_1423": {
+      "slope": 0.9805572717739102,
+      "intercept": -1.5449076268441766,
+      "pairs": 866
+    },
+    "site_1424": {
+      "slope": 0.9807737659461239,
+      "intercept": -1.6644265602418917,
+      "pairs": 873
+    },
+    "site_1426": {
+      "slope": 0.981346379674055,
+      "intercept": -1.782248177461241,
+      "pairs": 838
+    },
+    "site_1427": {
+      "slope": 0.977531235368377,
+      "intercept": -1.1792211879170182,
+      "pairs": 768
+    },
+    "site_1428": {
+      "slope": 0.7953224309239788,
+      "intercept": -28.183713693417733,
+      "pairs": 826
+    },
+    "site_1430": {
+      "slope": 0.9788272360912882,
+      "intercept": -1.5056730958661781,
+      "pairs": 727
+    },
+    "site_1431": {
+      "slope": 0.7954600423293989,
+      "intercept": -28.152954047672583,
+      "pairs": 835
+    },
+    "site_1434": {
+      "slope": 0.7920956682277137,
+      "intercept": -26.84844210577679,
+      "pairs": 847
+    },
+    "site_1560": {
+      "slope": 0.9787052970266207,
+      "intercept": -1.2799416001795019,
+      "pairs": 846
+    }
+  },
+  "stations": 36,
+  "clients": 8,
+  "heldout_stations": [
+    "site_1562",
+    "site_1429",
+    "site_1425",
+    "site_301",
+    "site_1435",
+    "site_1561",
+    "site_1432",
+    "site_5024"
+  ],
+  "seen_stations": [
+    "site_103",
+    "site_104",
+    "site_105",
+    "site_106",
+    "site_107",
+    "site_108",
+    "site_109",
+    "site_113",
+    "site_114",
+    "site_115",
+    "site_117",
+    "site_118",
+    "site_119",
+    "site_122",
+    "site_124",
+    "site_125",
+    "site_1420",
+    "site_1421",
+    "site_1422",
+    "site_1423",
+    "site_1424",
+    "site_1426",
+    "site_1427",
+    "site_1428",
+    "site_1430",
+    "site_1431",
+    "site_1434",
+    "site_1560"
+  ],
+  "lookback_hours": 6,
+  "stride_hours": 3,
+  "split_boundaries": [
+    "2024-02-06 14:00:00",
+    "2024-09-13 04:00:00",
+    "2024-11-07 02:00:00"
+  ],
+  "sample_counts": {
+    "train": 35518,
+    "validation": 10073,
+    "test": 11520,
+    "spatial": 3255,
+    "nonmember": 3959
+  },
+  "profiles": [
+    {
+      "client": 0,
+      "corrupted": true,
+      "bias_ugm3": 35.0,
+      "gain": 1.25,
+      "annual_drift_ugm3": 30.0,
+      "noise_sd_ugm3": 12.0,
+      "dropout": 0.04,
+      "stuck_blocks": 12,
+      "calibration_rmse": 9.832062721252441,
+      "confidence": 0.7550917018157681,
+      "stations": [
+        "site_108",
+        "site_119",
+        "site_1421",
+        "site_1428"
+      ]
+    },
+    {
+      "client": 1,
+      "corrupted": false,
+      "bias_ugm3": 1.5,
+      "gain": 1.02,
+      "annual_drift_ugm3": 2.0,
+      "noise_sd_ugm3": 3.0,
+      "dropout": 0.01,
+      "stuck_blocks": 0,
+      "calibration_rmse": 2.93086838722229,
+      "confidence": 0.9196711699682403,
+      "stations": [
+        "site_103",
+        "site_106",
+        "site_124",
+        "site_1427"
+      ]
+    },
+    {
+      "client": 2,
+      "corrupted": false,
+      "bias_ugm3": 1.5,
+      "gain": 1.02,
+      "annual_drift_ugm3": 2.0,
+      "noise_sd_ugm3": 3.0,
+      "dropout": 0.01,
+      "stuck_blocks": 0,
+      "calibration_rmse": 2.964059829711914,
+      "confidence": 0.9187994344430688,
+      "stations": [
+        "site_109",
+        "site_115",
+        "site_1422",
+        "site_1424"
+      ]
+    },
+    {
+      "client": 3,
+      "corrupted": true,
+      "bias_ugm3": 35.0,
+      "gain": 1.25,
+      "annual_drift_ugm3": 30.0,
+      "noise_sd_ugm3": 12.0,
+      "dropout": 0.04,
+      "stuck_blocks": 12,
+      "calibration_rmse": 9.943942070007324,
+      "confidence": 0.7526818649431792,
+      "stations": [
+        "site_107",
+        "site_117",
+        "site_122",
+        "site_1431"
+      ]
+    },
+    {
+      "client": 4,
+      "corrupted": false,
+      "bias_ugm3": 1.5,
+      "gain": 1.02,
+      "annual_drift_ugm3": 2.0,
+      "noise_sd_ugm3": 3.0,
+      "dropout": 0.01,
+      "stuck_blocks": 0,
+      "calibration_rmse": 3.0047943592071533,
+      "confidence": 0.9177307175402051,
+      "stations": [
+        "site_105",
+        "site_113",
+        "site_125"
+      ]
+    },
+    {
+      "client": 5,
+      "corrupted": true,
+      "bias_ugm3": 35.0,
+      "gain": 1.25,
+      "annual_drift_ugm3": 30.0,
+      "noise_sd_ugm3": 12.0,
+      "dropout": 0.04,
+      "stuck_blocks": 12,
+      "calibration_rmse": 10.656599998474121,
+      "confidence": 0.7375109925913089,
+      "stations": [
+        "site_114",
+        "site_1420",
+        "site_1434"
+      ]
+    },
+    {
+      "client": 6,
+      "corrupted": false,
+      "bias_ugm3": 1.5,
+      "gain": 1.02,
+      "annual_drift_ugm3": 2.0,
+      "noise_sd_ugm3": 3.0,
+      "dropout": 0.01,
+      "stuck_blocks": 0,
+      "calibration_rmse": 2.934629440307617,
+      "confidence": 0.9195723486467589,
+      "stations": [
+        "site_104",
+        "site_1423",
+        "site_1430"
+      ]
+    },
+    {
+      "client": 7,
+      "corrupted": false,
+      "bias_ugm3": 1.5,
+      "gain": 1.02,
+      "annual_drift_ugm3": 2.0,
+      "noise_sd_ugm3": 3.0,
+      "dropout": 0.01,
+      "stuck_blocks": 0,
+      "calibration_rmse": 2.9150326251983643,
+      "confidence": 0.920087369652782,
+      "stations": [
+        "site_118",
+        "site_1426",
+        "site_1560"
+      ]
+    }
+  ],
+  "first_time": "2024-01-01 00:00:00",
+  "last_time": "2024-12-31 23:00:00"
+}

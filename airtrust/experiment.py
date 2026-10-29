@@ -33,6 +33,7 @@ def train_one(data,method='trust',kind='graph',rounds=20,steps=12,seed=17,save_d
     sizes=np.array([len(ids) for ids in client_ids])
     confidences=np.array([p['confidence'] for p in data['profiles']])
     history=[]; best=float('inf'); best_state=None; last_updates=None
+    reputation=np.ones(len(sizes),dtype=float)
     def optimize(local,ids,count):
         opt=torch.optim.Adam(local.parameters(),lr=.002)
         local.train()
@@ -56,6 +57,14 @@ def train_one(data,method='trust',kind='graph',rounds=20,steps=12,seed=17,save_d
                 # Independent update-consistency baseline: inverse distance to median update.
                 flat=np.stack([np.concatenate([v.numpy().ravel() for v in s.values()]) for s in states])
                 weights*=1/(np.linalg.norm(flat-np.median(flat,axis=0),axis=1)+1e-4)
+            if method=='history_reputation':
+                # Temporal reputation: EWMA of agreement with the coordinate-median update.
+                updates=np.stack([np.concatenate([(s[key]-before[key]).numpy().ravel() for key in s]) for s in states])
+                center=np.median(updates,axis=0)
+                distances=np.linalg.norm(updates-center,axis=1)
+                scale=max(float(np.median(distances)),1e-6)
+                reputation=.8*reputation+.2*np.exp(-distances/scale)
+                weights*=np.maximum(reputation,.05)
             model.load_state_dict(aggregate(states,weights,method))
             weights=weights/weights.sum()
             last_updates=(before,states)

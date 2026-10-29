@@ -27,3 +27,13 @@ Delhi is the primary federated experiment. Beijing is a separate chronological t
 ## Reproduce and verify
 
 Run scripts/download_data.py to retrieve sources, scripts/run_experiments.py to generate results and scripts/build_submission.py to export derived files. Verify every entry in manifest.json with SHA-256. Manifest timestamps record actual download time in UTC, while observation times remain in source local time. The application needs no source API access once the files are present. CC BY attribution applies to source and modified derived data; this README identifies the modifications.
+
+## Expanded contextual observations
+
+datasets/raw/delhi_pm10_hourly_2024.csv: 323,061 observed PM10 rows at 39 Delhi catalog entries, hourly IST in 2024. CC BY 4.0, India Air Quality Database / XKDR Forum / CPCB CAAQM. Used for contextual monthly trends, not PM2.5 training labels.
+
+datasets/raw/delhi_no2_hourly_2024.csv: 325,379 observed NO2 rows at 39 Delhi catalog entries, hourly IST in 2024. CC BY 4.0, India Air Quality Database / XKDR Forum / CPCB CAAQM. Used for contextual monthly trends, not PM2.5 training labels.
+
+Delhi totals 966,067 pollutant rows across three parameters; added contextual rows total 648,440. Including the 420,768 Beijing station-hour rows gives 1,386,835 source rows with differing schemas. Duplicated provenance copies and virtual sensor derivatives are excluded from these counts.
+
+The GitHub source snapshot is bundled/source_data.zip with its SHA-256 in bundled/manifest.json. Run scripts/prepare_local_data.py to restore the exact source tree offline, then scripts/build_submission.py to generate processed samples and submission ZIPs. Extended experiment audits and per-fold metrics are included under results/.

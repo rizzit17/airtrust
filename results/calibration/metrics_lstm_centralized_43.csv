@@ -1,0 +1,2 @@
+seed,model,method,split,mae,rmse,r2,n
+43,lstm,centralized,test,27.834165573120117,41.44916555487351,0.9018285870552063,11403

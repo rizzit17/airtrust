@@ -1,0 +1,3 @@
+scenario,seed,model,method,split,mae,rmse,r2,n
+kanpur_relative,29,graph,history_reputation,test,66.97771453857422,98.21894388304122,0.4508451819419861,11520
+kanpur_relative,29,graph,history_reputation,spatial,66.64625549316406,97.41190932388606,0.5554890036582947,3255

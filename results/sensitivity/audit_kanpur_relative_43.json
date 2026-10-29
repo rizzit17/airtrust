@@ -1,0 +1,229 @@
+{
+  "source_rows": 317627,
+  "retained_observations": 300355,
+  "coverage_threshold": 0.7,
+  "excluded_stations": 3,
+  "colocated_catalog_entries_excluded": [
+    "site_1563"
+  ],
+  "timezone": "Asia/Kolkata",
+  "sensor_model": "kanpur_relative",
+  "spatial_fold": null,
+  "input_calibration": false,
+  "stations": 36,
+  "clients": 8,
+  "heldout_stations": [
+    "site_1562",
+    "site_1429",
+    "site_1425",
+    "site_301",
+    "site_1435",
+    "site_1561",
+    "site_1432",
+    "site_5024"
+  ],
+  "seen_stations": [
+    "site_103",
+    "site_104",
+    "site_105",
+    "site_106",
+    "site_107",
+    "site_108",
+    "site_109",
+    "site_113",
+    "site_114",
+    "site_115",
+    "site_117",
+    "site_118",
+    "site_119",
+    "site_122",
+    "site_124",
+    "site_125",
+    "site_1420",
+    "site_1421",
+    "site_1422",
+    "site_1423",
+    "site_1424",
+    "site_1426",
+    "site_1427",
+    "site_1428",
+    "site_1430",
+    "site_1431",
+    "site_1434",
+    "site_1560"
+  ],
+  "lookback_hours": 6,
+  "stride_hours": 3,
+  "split_boundaries": [
+    "2024-02-06 14:00:00",
+    "2024-09-13 04:00:00",
+    "2024-11-07 02:00:00"
+  ],
+  "sample_counts": {
+    "train": 36312,
+    "validation": 10093,
+    "test": 11520,
+    "spatial": 3255,
+    "nonmember": 4027
+  },
+  "profiles": [
+    {
+      "client": 0,
+      "corrupted": false,
+      "bias_ugm3": 0,
+      "gain": 1,
+      "annual_drift_ugm3": 0,
+      "noise_sd_ugm3": null,
+      "dropout": 0,
+      "stuck_blocks": 0,
+      "relative_error_sd": 0.35,
+      "sensor_model": "kanpur_relative",
+      "calibration_rmse": 74.24384307861328,
+      "confidence": 0.11988136389986813,
+      "stations": [
+        "site_108",
+        "site_119",
+        "site_1421",
+        "site_1428"
+      ]
+    },
+    {
+      "client": 1,
+      "corrupted": false,
+      "bias_ugm3": 0,
+      "gain": 1,
+      "annual_drift_ugm3": 0,
+      "noise_sd_ugm3": null,
+      "dropout": 0,
+      "stuck_blocks": 0,
+      "relative_error_sd": 0.35,
+      "sensor_model": "kanpur_relative",
+      "calibration_rmse": 74.65876770019531,
+      "confidence": 0.11846856254568515,
+      "stations": [
+        "site_103",
+        "site_106",
+        "site_124",
+        "site_1427"
+      ]
+    },
+    {
+      "client": 2,
+      "corrupted": true,
+      "bias_ugm3": 0,
+      "gain": 1,
+      "annual_drift_ugm3": 0,
+      "noise_sd_ugm3": null,
+      "dropout": 0,
+      "stuck_blocks": 0,
+      "relative_error_sd": 0.46,
+      "sensor_model": "kanpur_relative",
+      "calibration_rmse": 94.01753997802734,
+      "confidence": 0.06813832642077154,
+      "stations": [
+        "site_109",
+        "site_115",
+        "site_1422",
+        "site_1424"
+      ]
+    },
+    {
+      "client": 3,
+      "corrupted": false,
+      "bias_ugm3": 0,
+      "gain": 1,
+      "annual_drift_ugm3": 0,
+      "noise_sd_ugm3": null,
+      "dropout": 0,
+      "stuck_blocks": 0,
+      "relative_error_sd": 0.35,
+      "sensor_model": "kanpur_relative",
+      "calibration_rmse": 72.20262145996094,
+      "confidence": 0.12708081685604652,
+      "stations": [
+        "site_107",
+        "site_117",
+        "site_122",
+        "site_1431"
+      ]
+    },
+    {
+      "client": 4,
+      "corrupted": false,
+      "bias_ugm3": 0,
+      "gain": 1,
+      "annual_drift_ugm3": 0,
+      "noise_sd_ugm3": null,
+      "dropout": 0,
+      "stuck_blocks": 0,
+      "relative_error_sd": 0.35,
+      "sensor_model": "kanpur_relative",
+      "calibration_rmse": 77.54309844970703,
+      "confidence": 0.10909708571390789,
+      "stations": [
+        "site_105",
+        "site_113",
+        "site_125"
+      ]
+    },
+    {
+      "client": 5,
+      "corrupted": true,
+      "bias_ugm3": 0,
+      "gain": 1,
+      "annual_drift_ugm3": 0,
+      "noise_sd_ugm3": null,
+      "dropout": 0,
+      "stuck_blocks": 0,
+      "relative_error_sd": 0.46,
+      "sensor_model": "kanpur_relative",
+      "calibration_rmse": 92.8636245727539,
+      "confidence": 0.0704222217079385,
+      "stations": [
+        "site_114",
+        "site_1420",
+        "site_1434"
+      ]
+    },
+    {
+      "client": 6,
+      "corrupted": false,
+      "bias_ugm3": 0,
+      "gain": 1,
+      "annual_drift_ugm3": 0,
+      "noise_sd_ugm3": null,
+      "dropout": 0,
+      "stuck_blocks": 0,
+      "relative_error_sd": 0.35,
+      "sensor_model": "kanpur_relative",
+      "calibration_rmse": 79.44171905517578,
+      "confidence": 0.103336626473916,
+      "stations": [
+        "site_104",
+        "site_1423",
+        "site_1430"
+      ]
+    },
+    {
+      "client": 7,
+      "corrupted": true,
+      "bias_ugm3": 0,
+      "gain": 1,
+      "annual_drift_ugm3": 0,
+      "noise_sd_ugm3": null,
+      "dropout": 0,
+      "stuck_blocks": 0,
+      "relative_error_sd": 0.46,
+      "sensor_model": "kanpur_relative",
+      "calibration_rmse": 79.10710906982422,
+      "confidence": 0.10432929162482096,
+      "stations": [
+        "site_118",
+        "site_1426",
+        "site_1560"
+      ]
+    }
+  ],
+  "first_time": "2024-01-01 00:00:00",
+  "last_time": "2024-12-31 23:00:00"
+}

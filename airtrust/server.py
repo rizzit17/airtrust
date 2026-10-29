@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import torch
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from .data import ROOT, prepare
@@ -32,6 +32,44 @@ def overview():
 
 @app.get('/api/history')
 def history(): return json.loads((RESULTS/'history.json').read_text())
+
+@app.get('/api/extended')
+def extended():
+    path=ROOT/'datasets'/'expansion.json'
+    cv=RESULTS/'spatial_cv'
+    return dict(expansion=json.loads(path.read_text()) if path.exists() else None,cv=records(cv/'summary.csv'),calibration=records(RESULTS/'calibration'/'summary.csv'),sensitivity=records(RESULTS/'sensitivity'/'summary.csv'),completed_cv_fits=len(list(cv.glob('metrics_*.csv'))),expected_cv_fits=120)
+
+@app.get('/api/quality')
+def quality():
+    data=get_data(); rows=[]
+    for j,(sid,station) in enumerate(data['stations'].iterrows()):
+        values=data['reference'][:,j]; good=np.isfinite(values)
+        rows.append(dict(station_id=sid,name=station.station_name,valid=int(good.sum()),missing=int((~good).sum()),coverage=float(good.mean()),mean=float(np.nanmean(values)),p95=float(np.nanpercentile(values,95)),client=int(data['groups'][j])))
+    return rows
+
+@app.get('/api/context/{parameter}')
+def context_pollutant(parameter:str):
+    if parameter not in ['pm10','no2']: raise HTTPException(400,'Choose pm10 or no2')
+    path=ROOT/'datasets'/'raw'/f'delhi_{parameter}_hourly_2024.csv'
+    if not path.exists(): raise HTTPException(503,'Dataset download is incomplete')
+    frame=pd.read_csv(path); frame['date']=pd.to_datetime(frame.period_start).dt.strftime('%Y-%m')
+    frame['mean']=pd.to_numeric(frame['mean'],errors='coerce'); frame=frame[frame['mean']>=0]
+    return json.loads(frame.groupby('date')['mean'].agg(['mean','count']).reset_index().to_json(orient='records'))
+
+@app.get('/api/scenario')
+def scenario(station_id:str,bias:float=Query(20,ge=-100,le=100),gain:float=Query(1.1,ge=.5,le=2),drift:float=Query(20,ge=-100,le=100),noise:float=Query(10,ge=0,le=50),dropout:float=Query(.05,ge=0,le=.5)):
+    data=get_data()
+    if station_id not in data['stations'].index: raise HTTPException(404,'Unknown station')
+    j=data['stations'].index.get_loc(station_id); ref=data['reference'][:,j].astype(float); rng=np.random.default_rng(17)
+    raw=np.maximum(ref*gain+bias+np.linspace(0,1,len(ref))*drift+rng.normal(0,noise,len(ref)),0)
+    raw[rng.random(len(ref))<dropout]=np.nan
+    cut=data['bounds'][0]; good=np.isfinite(ref[:cut])&np.isfinite(raw[:cut])
+    if good.sum()<30: raise HTTPException(422,'Insufficient calibration pairs')
+    slope,intercept=np.linalg.lstsq(np.column_stack((raw[:cut][good],np.ones(good.sum()))),ref[:cut][good],rcond=None)[0]
+    calibrated=np.maximum(slope*raw+intercept,0); test=np.arange(len(ref))>=data['bounds'][2]; valid=test&np.isfinite(ref)&np.isfinite(raw)
+    def score(v): return float(np.sqrt(np.mean((v[valid]-ref[valid])**2)))
+    daily=pd.DataFrame(dict(reference=ref,simulated=raw,calibrated=calibrated),index=data['times']).resample('MS').mean().reset_index(names='date')
+    return dict(raw_rmse=score(raw),calibrated_rmse=score(calibrated),test_pairs=int(valid.sum()),calibration_pairs=int(good.sum()),slope=float(slope),intercept=float(intercept),series=json.loads(daily.to_json(orient='records',date_format='iso')),note='Fixed seed 17; synthetic scenario, not a retrained FL model. Linear correction is fitted only on first 10% co-located pairs. Later drift can invalidate calibration.')
 
 @app.get('/api/stations')
 def stations():

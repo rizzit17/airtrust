@@ -1,0 +1,22 @@
+{
+  "source": "India Air Quality Database, XKDR Forum / CPCB CAAQM",
+  "license": "CC BY 4.0",
+  "url": "https://airquality.xkdr.org",
+  "role": "Observed contextual pollutant exploration; not additional PM2.5 labels or low-cost sensors",
+  "files": [
+    {
+      "parameter": "PM10",
+      "rows": 323061,
+      "stations": 39,
+      "sha256": "a20877d159c055187b2b2ee52dcd9f7b022e7f4052b1da322eaf9a1dbbe5767d",
+      "path": "datasets/raw/delhi_pm10_hourly_2024.csv"
+    },
+    {
+      "parameter": "NO2",
+      "rows": 325379,
+      "stations": 39,
+      "sha256": "7edb099272679a9242f8b39df83af23fbd6245eaeb5ca45d609d993ecd2fb8ae",
+      "path": "datasets/raw/delhi_no2_hourly_2024.csv"
+    }
+  ]
+}

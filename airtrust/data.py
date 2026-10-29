@@ -50,7 +50,8 @@ def client_partition(stations,k=8):
     for g,ids in enumerate(np.array_split(order,k)): groups[ids]=g
     return groups
 
-def simulate(p,groups,seed,corruption=.4):
+def simulate(p,groups,seed,corruption=.4,sensor_model='stress'):
+    if sensor_model not in ('stress','kanpur_relative'): raise ValueError('Unknown sensor model')
     rng=np.random.default_rng(seed)
     ref=p.to_numpy(dtype=np.float32)
     k=int(max(groups)+1)
@@ -66,6 +67,13 @@ def simulate(p,groups,seed,corruption=.4):
         sigma=12. if corrupt else 3.
         ids=np.where(groups==g)[0]
         for s in ids:
+            if sensor_model=='kanpur_relative':
+                # Zheng 2018 Table 4 / abstract: 1h calibrated ratio error SD 35%/46%.
+                # Mean-one lognormal is our nonnegative generative assumption, not their fitted distribution.
+                relative_sd=.46 if corrupt else .35
+                log_sd=np.sqrt(np.log1p(relative_sd**2))
+                noisy[:,s]=ref[:,s]*rng.lognormal(-.5*log_sd**2,log_sd,len(ref))
+                continue
             y=ref[:,s]*gain+bias+clock*drift+rng.normal(0,sigma,len(ref))
             dropout=rng.random(len(ref)) < (.04 if corrupt else .01)
             y[dropout]=np.nan
@@ -73,19 +81,37 @@ def simulate(p,groups,seed,corruption=.4):
                 for start in rng.integers(24,len(ref)-12,12): y[start:start+6]=y[start-1]
             noisy[:,s]=np.maximum(y,0)
         profiles.append(dict(client=g,corrupted=corrupt,bias_ugm3=bias,gain=gain,annual_drift_ugm3=drift,noise_sd_ugm3=sigma,dropout=.04 if corrupt else .01,stuck_blocks=12 if corrupt else 0))
+        if sensor_model=='kanpur_relative':
+            profiles[-1].update(bias_ugm3=0,gain=1,annual_drift_ugm3=0,noise_sd_ugm3=None,dropout=0,stuck_blocks=0,relative_error_sd=.46 if corrupt else .35,sensor_model=sensor_model)
     return noisy,profiles
 
-def prepare(seed=17,corruption=.4,k=8,lookback=6,stride=3):
+def prepare(seed=17,corruption=.4,k=8,lookback=6,stride=3,fold=None,calibrate=False,sensor_model='stress'):
     p,stations,audit=load_delhi()
     n=len(p); bounds=(int(n*.10),int(n*.70),int(n*.85))
     groups=client_partition(stations,k)
-    noisy,profiles=simulate(p,groups,seed,corruption)
+    noisy,profiles=simulate(p,groups,seed,corruption,sensor_model)
+    audit['sensor_model']=sensor_model
     # Select unseen nodes from geography; never use their readings as donors or labels.
     held=[]
     for g in range(k):
         ids=np.where(groups==g)[0]
-        if len(ids)>=4: held.append(int(ids[-1]))
+        if fold is not None and fold not in range(5): raise ValueError('fold must be 0 through 4')
+        if len(ids)>=4:
+            if fold is None: held.append(int(ids[-1]))
+            elif fold<len(ids): held.append(int(ids[fold]))
     seen=[i for i in range(len(stations)) if i not in held]
+    audit['spatial_fold']=fold
+    audit['input_calibration']=calibrate
+    if calibrate:
+        coefficients={}
+        for s in seen:
+            x=noisy[:bounds[0],s]; y=p.iloc[:bounds[0],s].to_numpy()
+            valid=np.isfinite(x)&np.isfinite(y)
+            if valid.sum()<30: raise ValueError('Insufficient co-located calibration pairs')
+            slope,intercept=np.linalg.lstsq(np.column_stack((x[valid],np.ones(valid.sum()))),y[valid],rcond=None)[0]
+            noisy[:,s]=np.maximum(slope*noisy[:,s]+intercept,0)
+            coefficients[str(stations.index[s])]=dict(slope=float(slope),intercept=float(intercept),pairs=int(valid.sum()))
+        audit['calibration_coefficients']=coefficients
     # Forward-fill inputs only, at most 3h; no backfill, no interpolated test truth.
     filled=pd.DataFrame(noisy).ffill(limit=3).to_numpy(dtype=np.float32)
     ref=p.to_numpy(dtype=np.float32)

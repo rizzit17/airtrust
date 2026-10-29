@@ -7,5 +7,9 @@ datasets/raw/
 datasets/processed/
 submission/
 results_smoke/
-results/predictions.csv.gz
 *.log
+.env
+.env.*
+!.env.example
+*.pem
+*.key

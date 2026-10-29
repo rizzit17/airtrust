@@ -1,0 +1,3 @@
+scenario,seed,model,method,split,mae,rmse,r2,n
+stress,17,graph,history_reputation,test,67.51110076904297,93.75739554163181,0.49988704919815063,11506
+stress,17,graph,history_reputation,spatial,75.12088775634766,102.79841278869533,0.505092978477478,3254

@@ -1,0 +1,2 @@
+seed,model,method,split,mae,rmse,r2,n
+43,lstm,trust,test,27.722074508666992,41.41840623442674,0.9019742012023926,11403
