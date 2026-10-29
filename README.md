@@ -112,6 +112,10 @@ The membership probe uses individual-update loss improvement under an honest-but
 
 ## Dashboard
 
+**Explain simply** adds a classroom/ruler story on every screen, clickable term
+explanations, a searchable 64-term guide with speaking cues, and three guided
+sensor presets. See the [demo guide](docs/DEMO_GUIDE.md) for the exact sequence.
+
 Overview; historical prediction map and station detail; client trust and convergence; method comparisons; corruption sweep; privacy probe; dataset exports; Simulation Lab with sensor controls, early calibration, station coverage audits, PM10/NO₂ trends and station-CV results. Scenario controls compute labelled diagnostics, not silently retrained FL models.
 
 ## Reproduce

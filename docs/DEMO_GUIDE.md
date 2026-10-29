@@ -2,6 +2,38 @@
 
 Allow about 10 minutes. Start with the saved results; full retraining can be demonstrated separately.
 
+## Plain-language teaching mode
+
+Open the public site and press **Explain simply** in the top bar. Every screen
+gets a short analogy and a “During the demo” speaking cue. Underlined technical
+terms open a definition, analogy, suggested explanation and an important
+distinction. **Term guide** searches 64 explanations, including database/file
+formats, FL, GNN, LSTM, RMSE, MAE, R², folds, trust and privacy. The toggle is
+remembered in this browser; turning it off restores the regular view.
+
+For a short demonstration:
+
+1. Start at Overview: explain the eight study groups keeping their notebooks and
+   sharing learned rules. State that these are simulated groups on one computer.
+2. Open Simulation lab and press **Try the ruler story ↓**.
+3. Keep **CRRI Mathura Road** selected. Press **1 · A perfect ruler**: RMSE is
+   0.0 → 0.0. Say, “With no added sensor error, there is nothing to correct.”
+4. Press **2 · A faulty ruler**: 59.4 → 18.1. Say, “The early ruler check reduces
+   later error, although it does not remove every error.”
+5. Press **3 · It drifts further**: 114.0 → 64.1. Say, “A correction learned early
+   can become stale when the sensor changes more later.”
+6. Click an underlined **RMSE**, **calibration**, or **drift** for a short
+   explanation. Results use actual API calculations, not hard-coded displays.
+7. Explain that these are sensor-reading diagnostics. The saved FL models are
+   not retrained by these buttons. Experiment tables remain the model evidence.
+
+The presets populate the existing controls and run the same scenario endpoint.
+They do not change the experimental splits, saved models or evaluation results.
+At another station the scores can differ. All analogies simplify the explanation;
+they do not establish additional accuracy, privacy or deployment guarantees.
+
+## Full review sequence
+
 1. Restore data and start the app using the README. Show Overview and explain real reference data versus virtual low-cost measurements.
 2. Open Pollution map. Change the model and test hour, then inspect a held-out station. Explain why interpolated grid cells have no directly observed truth.
 3. Open Federation. Explain early co-location RMSE, geographic client groups, confidence weights and checkpoint selection.
