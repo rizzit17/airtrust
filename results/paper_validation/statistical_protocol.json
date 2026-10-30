@@ -1,0 +1,14 @@
+{
+  "unit": "One seed mean across the same five fixed station folds",
+  "pairs": 36,
+  "metrics": [
+    "rmse",
+    "mae",
+    "r2"
+  ],
+  "multiplicity_family": 108,
+  "test": "Two-sided exact sign enumeration of Wilcoxon signed ranks, zero differences omitted; requires symmetric paired-difference distribution for signed-rank location interpretation",
+  "confidence_intervals": "Unadjusted paired t intervals for seed-mean differences, conditional on fixed data, folds and model settings; not simultaneous or population-station intervals",
+  "null_interpretation": "Failure to reject is not equivalence or proof of no effect; no equivalence margin was prespecified",
+  "scope": "15 stochastic replications of the same Delhi year; no additional city, station or field measurement"
+}

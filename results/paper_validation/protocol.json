@@ -1,0 +1,51 @@
+{
+  "seeds": [
+    17,
+    29,
+    43,
+    59,
+    71,
+    89,
+    101,
+    127,
+    149,
+    173,
+    197,
+    223,
+    251,
+    277,
+    307
+  ],
+  "folds": 5,
+  "rounds": 20,
+  "local_steps": 12,
+  "original_results_reused": [
+    17,
+    29,
+    43
+  ],
+  "new_seeds": [
+    59,
+    71,
+    89,
+    101,
+    127,
+    149,
+    173,
+    197,
+    223,
+    251,
+    277,
+    307
+  ],
+  "hyperparameters_changed": false,
+  "python": "3.13.7",
+  "torch": "2.13.0+cpu",
+  "source_sha256": {
+    "airtrust/data.py": "f51b2aac2030fa6eb981e934ef6517a1bd7f008e30922ecdd5f327a9f8596354",
+    "airtrust/experiment.py": "5c27d750f96aa7b4b49cb9394d95429bc7f6c28a1e0a139908d1bfa04edcebb4",
+    "airtrust/models.py": "7353b3a61e476da08cd0e43356a2051ce3ae56012ba9ab409372afbe5fd00a9f",
+    "datasets/manifest.json": "dd2b98b657f8763a9c9f62b0505d1def03b77384fcdbc41fa85d89ed49ebd909"
+  },
+  "scope": "Same Delhi year and fixed station folds; seed replication varies initialization, minibatches, synthetic faults and reserved nonmember windows. Not independent geographic replication."
+}

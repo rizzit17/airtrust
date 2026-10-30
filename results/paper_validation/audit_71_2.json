@@ -1,0 +1,213 @@
+{
+  "source_rows": 317627,
+  "retained_observations": 300355,
+  "coverage_threshold": 0.7,
+  "excluded_stations": 3,
+  "colocated_catalog_entries_excluded": [
+    "site_1563"
+  ],
+  "timezone": "Asia/Kolkata",
+  "sensor_model": "stress",
+  "spatial_fold": 2,
+  "input_calibration": false,
+  "stations": 36,
+  "clients": 8,
+  "heldout_stations": [
+    "site_1421",
+    "site_124",
+    "site_1422",
+    "site_122",
+    "site_125",
+    "site_1434",
+    "site_1430",
+    "site_1560"
+  ],
+  "seen_stations": [
+    "site_103",
+    "site_104",
+    "site_105",
+    "site_106",
+    "site_107",
+    "site_108",
+    "site_109",
+    "site_113",
+    "site_114",
+    "site_115",
+    "site_117",
+    "site_118",
+    "site_119",
+    "site_1420",
+    "site_1423",
+    "site_1424",
+    "site_1425",
+    "site_1426",
+    "site_1427",
+    "site_1428",
+    "site_1429",
+    "site_1431",
+    "site_1432",
+    "site_1435",
+    "site_1561",
+    "site_1562",
+    "site_301",
+    "site_5024"
+  ],
+  "lookback_hours": 6,
+  "stride_hours": 3,
+  "split_boundaries": [
+    "2024-02-06 14:00:00",
+    "2024-09-13 04:00:00",
+    "2024-11-07 02:00:00"
+  ],
+  "sample_counts": {
+    "train": 34761,
+    "validation": 9802,
+    "test": 11494,
+    "spatial": 3256,
+    "nonmember": 3890
+  },
+  "profiles": [
+    {
+      "client": 0,
+      "corrupted": false,
+      "bias_ugm3": 1.5,
+      "gain": 1.02,
+      "annual_drift_ugm3": 2.0,
+      "noise_sd_ugm3": 3.0,
+      "dropout": 0.01,
+      "stuck_blocks": 0,
+      "calibration_rmse": 6.483643054962158,
+      "confidence": 0.8308990726194931,
+      "stations": [
+        "site_108",
+        "site_119",
+        "site_1428",
+        "site_1562"
+      ]
+    },
+    {
+      "client": 1,
+      "corrupted": false,
+      "bias_ugm3": 1.5,
+      "gain": 1.02,
+      "annual_drift_ugm3": 2.0,
+      "noise_sd_ugm3": 3.0,
+      "dropout": 0.01,
+      "stuck_blocks": 0,
+      "calibration_rmse": 6.319565296173096,
+      "confidence": 0.8348034187776345,
+      "stations": [
+        "site_103",
+        "site_106",
+        "site_1427",
+        "site_1429"
+      ]
+    },
+    {
+      "client": 2,
+      "corrupted": true,
+      "bias_ugm3": 35.0,
+      "gain": 1.25,
+      "annual_drift_ugm3": 30.0,
+      "noise_sd_ugm3": 12.0,
+      "dropout": 0.04,
+      "stuck_blocks": 12,
+      "calibration_rmse": 85.5999984741211,
+      "confidence": 0.08666421355952272,
+      "stations": [
+        "site_109",
+        "site_115",
+        "site_1424",
+        "site_1425"
+      ]
+    },
+    {
+      "client": 3,
+      "corrupted": false,
+      "bias_ugm3": 1.5,
+      "gain": 1.02,
+      "annual_drift_ugm3": 2.0,
+      "noise_sd_ugm3": 3.0,
+      "dropout": 0.01,
+      "stuck_blocks": 0,
+      "calibration_rmse": 6.465877056121826,
+      "confidence": 0.8313209440231214,
+      "stations": [
+        "site_107",
+        "site_117",
+        "site_1431",
+        "site_301"
+      ]
+    },
+    {
+      "client": 4,
+      "corrupted": false,
+      "bias_ugm3": 1.5,
+      "gain": 1.02,
+      "annual_drift_ugm3": 2.0,
+      "noise_sd_ugm3": 3.0,
+      "dropout": 0.01,
+      "stuck_blocks": 0,
+      "calibration_rmse": 6.73187780380249,
+      "confidence": 0.8250268350666629,
+      "stations": [
+        "site_105",
+        "site_113",
+        "site_1435"
+      ]
+    },
+    {
+      "client": 5,
+      "corrupted": false,
+      "bias_ugm3": 1.5,
+      "gain": 1.02,
+      "annual_drift_ugm3": 2.0,
+      "noise_sd_ugm3": 3.0,
+      "dropout": 0.01,
+      "stuck_blocks": 0,
+      "calibration_rmse": 6.125595569610596,
+      "confidence": 0.8394427364595699,
+      "stations": [
+        "site_114",
+        "site_1420",
+        "site_1561"
+      ]
+    },
+    {
+      "client": 6,
+      "corrupted": true,
+      "bias_ugm3": 35.0,
+      "gain": 1.25,
+      "annual_drift_ugm3": 30.0,
+      "noise_sd_ugm3": 12.0,
+      "dropout": 0.04,
+      "stuck_blocks": 12,
+      "calibration_rmse": 91.31676483154297,
+      "confidence": 0.07360440358211641,
+      "stations": [
+        "site_104",
+        "site_1423",
+        "site_1432"
+      ]
+    },
+    {
+      "client": 7,
+      "corrupted": true,
+      "bias_ugm3": 35.0,
+      "gain": 1.25,
+      "annual_drift_ugm3": 30.0,
+      "noise_sd_ugm3": 12.0,
+      "dropout": 0.04,
+      "stuck_blocks": 12,
+      "calibration_rmse": 75.04531860351562,
+      "confidence": 0.11716735751841234,
+      "stations": [
+        "site_118",
+        "site_1426",
+        "site_5024"
+      ]
+    }
+  ],
+  "first_time": "2024-01-01 00:00:00",
+  "last_time": "2024-12-31 23:00:00"
+}

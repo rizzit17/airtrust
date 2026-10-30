@@ -12,7 +12,9 @@ AirTrust is a reproducible research prototype for Delhi air-quality prediction. 
 
 ## Start here for evaluation
 
-- [Latest final Word report — original Review 2 template](docs/TeamNo_10_23BCT0157_Final_Review3.docx) — updated Review 3 content, all teacher-feedback categories addressed, executed results, 25-paper comparison and public deployment details; original headings, fonts and page design retained.
+- [Latest revised research paper — second-level corrections](docs/TeamNo_10_23BCT0157_Second_Level_Revised.docx) — plain-English benchmark framing, fifteen-seed spatial validation, paired comparisons, explicit synthetic-sensor and privacy limitations; original Word template retained.
+- [Revision evidence and reproduction commands](docs/SECOND_LEVEL_REVISION.md) — response to all six second-level comments and the distinction between original and expanded experiments.
+- [Earlier Review 3 report](docs/TeamNo_10_23BCT0157_Final_Review3.docx) — retained for version history; superseded by the second-level revision above.
 
 - [Review 3 presentation — 12 slides](docs/AirTrust_Review3_Presentation.pptx) — dataset roles and counts, station map, editable architecture diagrams and result charts, simulation scenarios, and presenter notes.
 - [Eight-page study and simulation guide](docs/Team10_Study_and_Demo_Guide.pdf) · [editable Word version](docs/Team10_Study_and_Demo_Guide.docx) — exact button sequence, speaking script, dataset answers and viva preparation.
@@ -85,24 +87,26 @@ flowchart LR
 - **LSTM:** long short-term memory model using a known station's own history. It is evaluated separately from unseen-location mapping.
 - **Comparators:** centralized, equal averaging, FedAvg, trust weighting, median, trimmed mean, Krum, instantaneous update consistency, temporal reputation, ordinary kriging, inverse distance weighting and persistence.
 - **Trust:** training sample count × exp(−early co-location RMSE/35), confidence floored at 0.05. Each virtual sensor is compared with its own reference, avoiding nearest-station gradient confounding.
-- **Training:** seeds 17, 29, 43; 20 rounds; 12 local steps; Adam 0.002; batch 128. Checkpoint selection uses validation RMSE.
+- **Training:** original suite uses seeds 17, 29, 43; expanded spatial validation uses fifteen seeds. Both use 20 rounds, 12 local steps, Adam 0.002 and batch 128. Checkpoint selection uses validation RMSE.
 - **Time:** first 10% calibration, next 60% training, next 15% validation, final 15% test. Privacy nonmembers are reserved from the training era.
-- **Spatial CV:** five rotating station folds × three seeds. Every station is withheld once per seed from fitting, validation, calibration and donors. Fold-seed SD is not an independent-window confidence interval.
+- **Spatial CV:** five rotating station folds × fifteen seeds. Every station is withheld once per seed from fitting, validation, calibration and donors. Original three-seed files remain in `results/spatial_cv`; expanded results are in `results/paper_validation`. Descriptive fold-seed SD is distinct from conditional paired inference over fifteen seed means.
 - **Calibration ablation:** early seen-station pairs fit a linear correction applied to later inputs and noisy labels. Reported on the original fixed holdout, separately from CV.
 - **Sensor sensitivity:** engineering bias/gain/drift/dropout/stuck-read stress tests plus a separate relative-error scenario anchored to [Zheng et al. (2018)](https://doi.org/10.5194/amt-11-4823-2018). The generative distribution is our assumption, not a fitted Delhi hardware model.
 
 ## Measured findings
 
-Five-fold unseen-station results, mean ± SD over 15 fold-seed runs:
+Expanded five-fold unseen-station results, mean ± SD over 75 fold-seed runs:
 
 | Method | MAE (µg/m³) | RMSE (µg/m³) | R² |
 |---|---:|---:|---:|
-| FedAvg | 68.20 ± 9.47 | 96.16 ± 12.11 | 0.466 ± 0.195 |
-| Trust-weighted FL | 68.01 ± 8.83 | 96.69 ± 11.35 | 0.465 ± 0.172 |
-| Centralized graph model | 71.20 ± 9.53 | 99.25 ± 11.35 | 0.434 ± 0.190 |
-| Ordinary kriging | 80.84 ± 19.19 | 109.80 ± 25.11 | 0.241 ± 0.500 |
+| FedAvg | 68.14 ± 8.72 | 96.08 ± 11.01 | 0.467 ± 0.185 |
+| Trust-weighted FL | 68.18 ± 8.35 | 96.81 ± 11.10 | 0.463 ± 0.171 |
+| Centralized graph model | 69.80 ± 8.83 | 97.39 ± 10.56 | 0.453 ± 0.187 |
+| Ordinary kriging | 80.10 ± 18.83 | 108.71 ± 24.14 | 0.253 ± 0.480 |
 
-![Spatial cross-validation](results/figures/spatial_cv.png)
+![Expanded spatial cross-validation](results/figures/spatial_cv_extended.png)
+
+All 36 pairs among nine spatial methods are tested for all three metrics, with Holm correction across 108 comparisons. The paired trust-minus-FedAvg RMSE difference is +0.73 µg/m³ (unadjusted 95% interval +0.17 to +1.29; exact p = 0.0125; adjusted p = 0.6475). This does not establish equivalence. See the [statistical protocol and limitations](docs/SECOND_LEVEL_REVISION.md).
 
 Trust weighting does **not** establish an advantage over FedAvg. In the separate fixed-holdout ablation, correction reduces trust-model RMSE from **99.92 ± 7.05 to 78.67 ± 2.02 µg/m³**; corrected FedAvg achieves **78.49 ± 2.05**. Input correction helps this simulation, while a trust-weighting advantage remains unproven.
 
@@ -118,11 +122,15 @@ sensor presets. See the [demo guide](docs/DEMO_GUIDE.md) for the exact sequence.
 
 Overview; historical prediction map and station detail; client trust and convergence; method comparisons; corruption sweep; privacy probe; dataset exports; Simulation Lab with sensor controls, early calibration, station coverage audits, PM10/NO₂ trends and station-CV results. Scenario controls compute labelled diagnostics, not silently retrained FL models.
 
+The dashboard and earlier presentation retain the original three-seed experiments. The latest paper adds the separately labelled fifteen-seed offline evaluation.
+
 ## Reproduce
 
 ```bash
 python scripts/run_experiments.py
 python scripts/run_spatial_cv.py
+python scripts/run_paper_validation.py
+python scripts/analyse_paper_validation.py
 python scripts/run_calibration.py
 python scripts/run_sensitivity.py
 python -m pytest -q
@@ -132,7 +140,7 @@ python scripts/package_submission.py
 python scripts/verify_submission.py
 ```
 
-`reproduce.bat` runs this sequence on Windows. CPU runtime varies. Extension runners resume existing per-run files: intentionally changing a configuration requires fresh corresponding output files to avoid mixing cached results. `requirements-lock.txt` records the original environment; `requirements.txt` provides compatible ranges.
+`reproduce.bat` runs the original suite on Windows; the two paper-validation commands above add the expanded evaluation. CPU runtime varies. Extension runners resume existing per-run files: intentionally changing a configuration requires fresh corresponding output files to avoid mixing cached results. `requirements-lock.txt` records the original environment; `requirements.txt` provides compatible ranges.
 
 Download sources again, if desired:
 
@@ -154,6 +162,7 @@ The downloader uses the provider's publicly documented demonstration key, bounde
 | `datasets/manifest.json` | Provenance and integrity checks |
 | `results/` | Models, metrics, predictions and figures |
 | `results/spatial_cv/` | Five-fold audits and predictions |
+| `results/paper_validation/` | Fifteen-seed evaluation, audits, conditional paired analysis and all 108 comparisons |
 | `results/calibration/` | Input-correction ablation |
 | `results/sensitivity/` | Relative-error and temporal-reputation experiments |
 | `docs/` | Reports, literature, requirements and demo guide |
